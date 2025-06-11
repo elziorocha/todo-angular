@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { LucideAngularModule, Plus } from 'lucide-angular';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { BadgePlus, LucideAngularModule, Plus } from 'lucide-angular';
+import { IlistItems } from '../../interfaces/listItems.interface';
 
 @Component({
   selector: 'app-add-list',
@@ -9,5 +10,26 @@ import { LucideAngularModule, Plus } from 'lucide-angular';
 })
 export class AddListComponent {
   readonly plusIcon = Plus;
+  readonly badgePlusIcon = BadgePlus;
 
+  #cdr = inject(ChangeDetectorRef);
+  @ViewChild('inputText') public inputText!: ElementRef;
+  @Output() public outListItems = new EventEmitter<IlistItems>();
+
+  public addItem(value: string) {
+    if (value) {
+      this.#cdr.detectChanges()
+      this.inputText.nativeElement.value = '';
+
+      const dataAtual = new Date().getTime();
+      const id = `ID ${dataAtual}`
+      this.outListItems.emit({
+        id,
+        checked: false,
+        value,
+      });
+
+      return this.inputText.nativeElement.focus();
+    }
+  }
 }

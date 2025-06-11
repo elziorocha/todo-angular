@@ -3,6 +3,7 @@ import { Component, signal, WritableSignal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { NoListComponent } from "../../components/no-list/no-list.component";
 import { AddListComponent } from '../../components/add-list/add-list.component';
+import { IlistItems } from '../../interfaces/listItems.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -11,5 +12,9 @@ import { AddListComponent } from '../../components/add-list/add-list.component';
 })
 
 export class HomePageComponent {
-  public addItem: WritableSignal<boolean> = signal(false);
+  public showInput: WritableSignal<boolean> = signal(false);
+
+  public getInputAddItems(value: IlistItems) {
+    console.log(value)
+  }
 }

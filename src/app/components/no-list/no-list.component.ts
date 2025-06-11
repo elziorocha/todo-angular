@@ -10,6 +10,6 @@ import { ListCollapse, LucideAngularModule } from 'lucide-angular';
 export class NoListComponent {
   readonly listCollapseIcon = ListCollapse;
 
-@Input({ required: true }) addItem!: WritableSignal<boolean>;
+@Input({ required: true }) showInput!: WritableSignal<boolean>;
 
 }

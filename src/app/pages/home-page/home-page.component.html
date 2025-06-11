@@ -1,7 +1,7 @@
 <main class="flex flex-col gap-12 items-center justify-center h-full">
-  @if (!addItem()) {
-    <app-no-list [addItem]="addItem" />
+  @if (!showInput()) {
+    <app-no-list [showInput]="showInput" />
   } @else {
-    <app-add-list />
+    <app-add-list (outListItems)="getInputAddItems($event)"/>
   }
 </main>
