@@ -14,7 +14,16 @@ import { IlistItems } from '../../interfaces/listItems.interface';
 export class HomePageComponent {
   public showInput: WritableSignal<boolean> = signal(false);
 
+  #setListItems = signal<IlistItems[]>([this.#parseItem()]);
+  getListItems = this.#setListItems.asReadonly();
+
+  #parseItem() {
+    return JSON.parse(localStorage.getItem('@my-list') || '[]')
+  }
+
   public getInputAddItems(value: IlistItems) {
-    console.log(value)
+    localStorage.setItem(
+      '@my-list', JSON.stringify([value])
+    );
   }
 }
