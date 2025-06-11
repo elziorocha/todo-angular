@@ -1,0 +1,11 @@
+<main class="flex flex-col items-center">
+  <div class="-mt-16 flex gap-8 items-center max-w-4xl">
+    <lucide-angular [img]="listCollapseIcon" loading="eager" class="size-64 text-zinc-300" alt="ícone de lista vazia" />
+    <h2 class="text-zinc-300 text-6xl font-bold">Sua lista de tarefas está vazia!</h2>
+  </div>
+
+  <button (click)="addItem.set(true)" class="px-4 py-2 cursor-pointer rounded-xl bg-green-001 hover:bg-green-010
+    text-zinc-300 text-2xl font-semibold transition-colors">
+    Crie uma tarefa
+  </button>
+</main>

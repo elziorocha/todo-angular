@@ -1,0 +1,7 @@
+<main class="flex flex-col gap-12 items-center justify-center h-full">
+  @if (!addItem()) {
+    <app-no-list [addItem]="addItem" />
+  } @else {
+    <app-add-list />
+  }
+</main>
