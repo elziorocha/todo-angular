@@ -1,7 +1,14 @@
-<main class="flex flex-col gap-12 items-center justify-center h-full">
+<main class="flex flex-col gap-12 items-center justify-center h-full p-10">
   @if (!showInput()) {
-    <app-no-list [showInput]="showInput" />
+  <app-no-list [showInput]="showInput" />
   } @else {
-    <app-add-list (outListItems)="getInputAddItems($event)"/>
+  <div class="flex gap-8 w-full">
+    <app-add-list (outListItems)="getInputAddItems($event)" class="self-center"/>
+
+    <section>
+      <app-add-item [inListItems]="getListItems()" />
+    </section>
+  </div>
+
   }
 </main>

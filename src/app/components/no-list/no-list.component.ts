@@ -1,5 +1,6 @@
 import { Component, Input, WritableSignal } from '@angular/core';
 import { ListCollapse, LucideAngularModule } from 'lucide-angular';
+import { IlistItems } from '../../interfaces/listItems.interface';
 
 @Component({
   selector: 'app-no-list',
@@ -10,6 +11,6 @@ import { ListCollapse, LucideAngularModule } from 'lucide-angular';
 export class NoListComponent {
   readonly listCollapseIcon = ListCollapse;
 
-@Input({ required: true }) showInput!: WritableSignal<boolean>;
+  @Input({ required: true }) showInput!: WritableSignal<boolean>;
 
 }

@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { BadgePlus, LucideAngularModule, Plus } from 'lucide-angular';
 import { IlistItems } from '../../interfaces/listItems.interface';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-list',
@@ -14,6 +15,7 @@ export class AddListComponent {
 
   #cdr = inject(ChangeDetectorRef);
   @ViewChild('inputText') public inputText!: ElementRef;
+
   @Output() public outListItems = new EventEmitter<IlistItems>();
 
   public addItem(value: string) {
