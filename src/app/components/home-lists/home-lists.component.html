@@ -1,0 +1,17 @@
+<main class="flex gap-6 h-full">
+  @if (listItemsStage('pending').length) {
+  <section class="h-screen pt-14 pb-18">
+    <h2 class="text-3xl font-bold text-zinc-300 mb-6 ml-2">Pendentes</h2>
+    <app-add-item [inListItems]="listItemsStage('pending')" (outputUpdateItem)="updateItemCheck($event)" />
+  </section>
+  }
+
+  <hr class="h-11/12 border-l border-zinc-500 self-center ml-2" />
+
+  @if (listItemsStage('completed').length) {
+  <section class="h-screen pt-14 pb-18">
+    <h2 class="text-3xl font-bold text-zinc-300 mb-6 ml-2">Concluídas</h2>
+    <app-add-item [inListItems]="listItemsStage('completed')" (outputUpdateItem)="updateItemCheck($event)" />
+  </section>
+  }
+</main>
