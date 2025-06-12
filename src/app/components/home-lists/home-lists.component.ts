@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IlistItems } from '../../interfaces/listItems.interface';
 import { CommonModule } from '@angular/common';
 import { AddItemComponent } from '../add-item/add-item.component';
@@ -8,35 +8,28 @@ import { AddItemComponent } from '../add-item/add-item.component';
   imports: [CommonModule, AddItemComponent],
   templateUrl: './home-lists.component.html',
 })
-
 export class HomeListsComponent {
-  @Input({ required: true }) public inListItems: Array<IlistItems> = [];
+  @Input({ required: true }) public inListItems: IlistItems[] = [];
 
-  public listItemsStage(value: 'pending' | 'completed') {
-    return this.inListItems.filter((res: IlistItems) => {
-      return value === 'pending' ? !res.checked : res.checked;
-    });
+  @Output() updateCheck = new EventEmitter<{ id: string; checked: boolean }>();
+  @Output() updateText = new EventEmitter<{ id: string; value: string }>();
+  @Output() deleteItem = new EventEmitter<string>();
+
+  public listItemsStage(stage: 'pending' | 'completed'): IlistItems[] {
+    return this.inListItems.filter(item =>
+      stage === 'pending' ? !item.checked : item.checked
+    );
   }
 
-  public updateItemCheck(newItem: { id: string, checked: boolean }) {
-    const index = this.inListItems.findIndex(item => item.id === newItem.id);
-    if (index !== -1) {
-      this.inListItems[index].checked = newItem.checked;
-      localStorage.setItem('@my-list', JSON.stringify(this.inListItems));
-    }
+  public onUpdateCheck(newItem: { id: string; checked: boolean }) {
+    this.updateCheck.emit(newItem);
   }
 
-  public updateItemText(newItem: { id: string, value: string }) {
-    const index = this.inListItems.findIndex(item => item.id === newItem.id);
-    if (index !== -1) {
-      this.inListItems[index].value = newItem.value;
-      localStorage.setItem('@my-list', JSON.stringify(this.inListItems));
-    }
+  public onUpdateText(newItem: { id: string; value: string }) {
+    this.updateText.emit(newItem);
   }
 
-  public deleteItems() {
-    localStorage.removeItem('@my-list');
-    this.inListItems = [];
+  public onDeleteItem(id: string) {
+    this.deleteItem.emit(id);
   }
 }
-

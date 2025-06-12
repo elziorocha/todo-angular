@@ -16,14 +16,17 @@ export class AddItemComponent {
   @Input({ required: true }) public inListItems: Array<IlistItems> = [];
 
   @Output() public outputUpdateItem = new EventEmitter<{ id: string; checked: boolean; }>();
-
   public updateItemCheck(id: string, checked: boolean) {
     return this.outputUpdateItem.emit({ id, checked });
   }
 
   @Output() public outputUpdateItemDesc = new EventEmitter<{ id: string; value: string; }>();
-
   public updateItemCheckDesc(id: string, value: string) {
     return this.outputUpdateItemDesc.emit({ id, value });
+  }
+
+  @Output() public outputDeleteItem = new EventEmitter<string>();
+  public deleteItemCheck(id: string) {
+    return this.outputDeleteItem.emit(id);
   }
 }

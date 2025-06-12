@@ -1,13 +1,19 @@
 <main class="flex flex-col gap-12 items-center justify-center h-full p-10">
-  @if (!showInput()) {
+  @if (!showInput() && getListItems().length === 0) {
   <app-no-list [showInput]="showInput" />
   } @else {
   <div class="flex gap-10 w-full">
-    <app-add-list (outListItems)="getInputAddItems($event)" class="self-center" />
+    <div class="h-full flex flex-col gap-12 justify-evenly items-center">
+      <app-add-list (outListItems)="getInputAddItems($event)" class="self-center" />
+
+      <app-delete-items [inListItems]="getListItems()" />
+    </div>
 
     <hr class="h-11/12 border-l border-zinc-500 self-center ml-2" />
 
-    <app-home-lists [inListItems]="getListItems()" />
+    <app-home-lists [inListItems]="getListItems()" (updateCheck)="updateItemCheck($event)"
+      (updateText)="updateItemText($event)" (deleteItem)="deleteItem($event)" />
+
   </div>
 
   }

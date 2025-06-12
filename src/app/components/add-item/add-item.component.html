@@ -15,7 +15,7 @@
             (input)="updateItemCheckDesc(item.id, inputValue.value)" class="outline-none text-lg py-0.5" />
       </div>
 
-      <button class="rounded-full bg-red-600 hover:bg-red-700 p-1 cursor-pointer">
+      <button (click)="deleteItemCheck(item.id)" class="rounded-full bg-red-600 hover:bg-red-700 p-1 cursor-pointer">
         <lucide-angular [img]="xIcon" class="size-6" />
       </button>
     </div>
