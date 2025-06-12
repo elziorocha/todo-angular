@@ -1,10 +1,16 @@
-<main class="flex flex-col flex-wrap h-screen gap-4 py-20">
+<section class="flex flex-col flex-wrap gap-4 max-h-full">
   @for(item of inListItems; track item) {
   <label [for]="item.id" class="bg-neutral-700 hover:bg-neutral-800 flex flex-col transition-all rounded-full">
     <div class="flex justify-between items-center px-3 py-2 text-zinc-300 font-semibold">
       <div class="flex gap-3 items-center">
-        <input type="checkbox" #inputCheckbox [checked]="item.checked"
-          class="appearance-none size-7 rounded-full border-2 border-zinc-300 checked:bg-green-001 checked:border-green-001 transition" />
+        <div class="relative inline-block size-7">
+          <input type="checkbox" #inputCheckbox [checked]="item.checked"
+            (input)="updateItemCheck(item.id, inputCheckbox.checked)" class="appearance-none size-7 rounded-full border-2 border-zinc-300 hover:bg-green-010 hover:border-green-010
+            checked:bg-green-001 checked:border-green-001 transition" />
+          <lucide-angular *ngIf="item.checked" [img]="checkedIcon"
+            class="absolute inset-0 m-auto size-5 text-zinc-300 pointer-events-none" />
+        </div>
+
         <input type="text" #inputValue [id]="item.id" [value]="item.value" placeholder="Adicione um valor" autofocus
           class="outline-none text-lg py-0.5" />
       </div>
@@ -15,4 +21,4 @@
     </div>
   </label>
   }
-</main>
+</section>

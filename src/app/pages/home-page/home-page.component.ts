@@ -24,11 +24,44 @@ export class HomePageComponent {
 
   @Input({ required: true }) public inListItems: Array<IlistItems> = [];
 
+  public listItemsStage(value: 'pending' | 'completed') {
+    return this.getListItems().filter((res: IlistItems) => {
+      if (value === 'pending') {
+        return !res.checked
+      } else if (value === 'completed') {
+        return res.checked
+      }
+
+      return res;
+    })
+  }
+
+  public updateItemCheck(newItem: { id: string, checked: boolean }) {
+    this.#setListItems.update((oldValue: IlistItems[]) => {
+      oldValue.filter(res => {
+        if (res.id === newItem.id) {
+          res.checked = newItem.checked;
+          return res;
+        }
+
+        return res;
+      })
+      return oldValue;
+    })
+
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItems()))
+  }
+
   public getInputAddItems(value: IlistItems) {
     localStorage.setItem(
       '@my-list', JSON.stringify([...this.#setListItems(), value])
     );
 
+    return this.#setListItems.set(this.#parseItem());
+  }
+
+  public deleteItems() {
+    localStorage.removeItem('@my-list');
     return this.#setListItems.set(this.#parseItem());
   }
 }
