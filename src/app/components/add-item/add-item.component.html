@@ -7,12 +7,12 @@
           <input type="checkbox" #inputCheckbox [checked]="item.checked"
             (input)="updateItemCheck(item.id, inputCheckbox.checked)" class="appearance-none size-7 rounded-full border-2 border-zinc-300 hover:bg-green-010 hover:border-green-010
             checked:bg-green-001 checked:border-green-001 transition cursor-pointer" />
-          <lucide-angular *ngIf="item.checked" [img]="checkedIcon"
+          <lucide-angular [img]="checkedIcon"
             class="absolute inset-0 m-auto size-5 text-zinc-300 pointer-events-none" />
         </div>
 
         <input type="text" #inputValue [id]="item.id" [value]="item.value" placeholder="Adicione um valor" autofocus
-          class="outline-none text-lg py-0.5" />
+            (input)="updateItemCheckDesc(item.id, inputValue.value)" class="outline-none text-lg py-0.5" />
       </div>
 
       <button class="rounded-full bg-red-600 hover:bg-red-700 p-1 cursor-pointer">

@@ -2,7 +2,8 @@
   @if (listItemsStage('pending').length) {
   <section class="h-screen pt-14 pb-18">
     <h2 class="text-3xl font-bold text-zinc-300 mb-6 ml-2">Pendentes</h2>
-    <app-add-item [inListItems]="listItemsStage('pending')" (outputUpdateItem)="updateItemCheck($event)" />
+    <app-add-item [inListItems]="listItemsStage('pending')" (outputUpdateItem)="updateItemCheck($event)"
+      (outputUpdateItemDesc)="updateItemText($event)" />
   </section>
   }
 
@@ -11,7 +12,8 @@
   @if (listItemsStage('completed').length) {
   <section class="h-screen pt-14 pb-18">
     <h2 class="text-3xl font-bold text-zinc-300 mb-6 ml-2">Concluídas</h2>
-    <app-add-item [inListItems]="listItemsStage('completed')" (outputUpdateItem)="updateItemCheck($event)" />
+    <app-add-item [inListItems]="listItemsStage('completed')" (outputUpdateItem)="updateItemCheck($event)"
+      (outputUpdateItemDesc)="updateItemText($event)" />
   </section>
   }
 </main>

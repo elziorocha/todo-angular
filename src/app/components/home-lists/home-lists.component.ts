@@ -26,6 +26,14 @@ export class HomeListsComponent {
     }
   }
 
+  public updateItemText(newItem: { id: string, value: string }) {
+    const index = this.inListItems.findIndex(item => item.id === newItem.id);
+    if (index !== -1) {
+      this.inListItems[index].value = newItem.value;
+      localStorage.setItem('@my-list', JSON.stringify(this.inListItems));
+    }
+  }
+
   public deleteItems() {
     localStorage.removeItem('@my-list');
     this.inListItems = [];

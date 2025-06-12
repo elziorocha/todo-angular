@@ -20,4 +20,10 @@ export class AddItemComponent {
   public updateItemCheck(id: string, checked: boolean) {
     return this.outputUpdateItem.emit({ id, checked });
   }
+
+  @Output() public outputUpdateItemDesc = new EventEmitter<{ id: string; value: string; }>();
+
+  public updateItemCheckDesc(id: string, value: string) {
+    return this.outputUpdateItemDesc.emit({ id, value });
+  }
 }
